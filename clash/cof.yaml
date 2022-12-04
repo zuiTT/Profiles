@@ -5,7 +5,6 @@ tproxy-port: 7893
 allow-lan: true
 bind-address: '*'
 external-controller: 0.0.0.0:9090
-external-ui: ./clash-dashboard
 ipv6: false
 log-level: info
 mode: rule
