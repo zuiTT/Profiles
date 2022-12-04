@@ -1,69 +1,120 @@
-# https://github.com/alecthw/mmdb_china_ip_list/raw/release/lite/Country.mmdb
-
-mixed-port: 7890
-tproxy-port: 7893
-allow-lan: true
-bind-address: '*'
-external-controller: 0.0.0.0:9090
-ipv6: false
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+allow-lan: false
+mode: Rule
 log-level: info
-mode: rule
-routing-mark: 7777
+ipv6: false
+hosts:
+  services.googleapis.cn: 216.58.200.67
+  www.google.cn: 216.58.200.67
+external-controller: 0.0.0.0:9090
+clash-for-android:
+  append-system-dns: false
 profile:
   tracing: true
-  store-selected: true
-  store-fake-ip: true
-
-interface-name: br0
-auto-redir:
-  enable: true
-  auto-route: true
-tun:
-  enable: true
-  stack: system
-  dns-hijack:
-    - any:53
-  auto-route: true
-
 dns:
   enable: true
-  listen: 0.0.0.0:53
+  listen: 127.0.0.1:8853
   default-nameserver:
-    - 119.29.29.29
     - 223.5.5.5
     - 1.0.0.1
+  ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - '*.lan'
-    - '*.local'
-    - '+.ntp.*.*'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-    - '+.srv.nintendo.net'
-    - '+.stun.playstation.net'
-    - 'xbox.*.*.microsoft.com'
-    - '+.xboxlive.com'
-    - '+.microsoft.com'
-    - '+.msftconnecttest.com'
-    - '+.msftncsi.com'
-    - 'in.appcenter.ms'
-    - '+.msn.com'
-    - '+.nflxvideo.net'
-    - '*.square-enix.com'
-    - '*.finalfantasyxiv.com'
-    - '*.ffxiv.com'
-    - '*.mcdn.bilivideo.cn'
-    - '+.qq.com'
-    - '+.tencent.com'
+    - "*.lan"
+    - stun.*.*.*
+    - stun.*.*
+    - time.windows.com
+    - time.nist.gov
+    - time.apple.com
+    - time.asia.apple.com
+    - "*.ntp.org.cn"
+    - "*.openwrt.pool.ntp.org"
+    - time1.cloud.tencent.com
+    - time.ustc.edu.cn
+    - pool.ntp.org
+    - ntp.ubuntu.com
+    - ntp.aliyun.com
+    - ntp1.aliyun.com
+    - ntp2.aliyun.com
+    - ntp3.aliyun.com
+    - ntp4.aliyun.com
+    - ntp5.aliyun.com
+    - ntp6.aliyun.com
+    - ntp7.aliyun.com
+    - time1.aliyun.com
+    - time2.aliyun.com
+    - time3.aliyun.com
+    - time4.aliyun.com
+    - time5.aliyun.com
+    - time6.aliyun.com
+    - time7.aliyun.com
+    - "*.time.edu.cn"
+    - time1.apple.com
+    - time2.apple.com
+    - time3.apple.com
+    - time4.apple.com
+    - time5.apple.com
+    - time6.apple.com
+    - time7.apple.com
+    - time1.google.com
+    - time2.google.com
+    - time3.google.com
+    - time4.google.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - localhost.ptlogin2.qq.com
+    - "*.*.*.srv.nintendo.net"
+    - "*.*.stun.playstation.net"
+    - xbox.*.*.microsoft.com
+    - "*.ipv6.microsoft.com"
+    - "*.*.xboxlive.com"
+    - speedtest.cros.wr.pvp.net
   nameserver:
-    - 119.29.29.29
-    - 223.5.5.5
-    # - dhcp://enp1s0
-    # - tls://1.12.12.12
-    # - https://1.12.12.12/dns-query
-  nameserver-policy:
-    '+.taobao.com': '223.5.5.5'
-    '+.qq.com': '119.29.29.29'
+    - https://223.6.6.6/dns-query
+    - https://rubyfish.cn/dns-query
+    - https://dns.pub/dns-query
+  fallback:
+    - https://dns.rubyfish.cn/dns-query
+    - https://public.dns.iij.jp/dns-query
+    - tls://8.8.4.4
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+      - 127.0.0.1/32
+    domain:
+      - +.google.com
+      - +.facebook.com
+      - +.twitter.com
+      - +.youtube.com
+      - +.xn--ngstr-lra8j.com
+      - +.google.cn
+      - +.googleapis.cn
+      - +.googleapis.com
+      - +.gvt1.com
