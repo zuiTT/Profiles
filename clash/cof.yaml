@@ -2,7 +2,7 @@ port: 7890
 socks-port: 7891
 redir-port: 7892
 mixed-port: 7893
-allow-lan: true
+allow-lan: false
 mode: Rule
 log-level: info
 ipv6: false
@@ -18,12 +18,10 @@ dns:
   enable: true
   listen: 127.0.0.1:8853
   default-nameserver:
-    - 119.29.29.29
     - 223.5.5.5
     - 1.0.0.1
   ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "*.lan"
     - stun.*.*.*
@@ -120,3 +118,10 @@ dns:
       - +.googleapis.cn
       - +.googleapis.com
       - +.gvt1.com
+tun:
+  enable: true
+  stack: gvisor
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
