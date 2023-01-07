@@ -129,7 +129,7 @@ dns:
       - +.googleapis.com
       - +.gvt1.com
 tun:
-  enable: true
+  enable: false
   stack: gvisor
   auto-route: true
   auto-detect-interface: true
