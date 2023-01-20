@@ -33,6 +33,7 @@ dns:
     - "*.lan"
     - stun.*.*.*
     - stun.*.*
+    - nerdpack.xyz
     - time.windows.com
     - time.nist.gov
     - time.apple.com
